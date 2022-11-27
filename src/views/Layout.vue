@@ -43,10 +43,10 @@
       <img
         alt="avatar"
         class="hidden-sm-and-down"
-        src="https://raw.githubusercontent.com/guanpengchn/Figure/master/muma-blog.png"
+        src="https://s2.loli.net/2022/11/27/QhkmBtI7xK2LGNb.jpg"
         width="50px"
       />
-      <v-toolbar-title class="font-weight-regular ml-2">追梦</v-toolbar-title>
+      <v-toolbar-title class="font-weight-regular ml-2">乔木</v-toolbar-title>
       <v-spacer></v-spacer>
       <!-- <v-btn icon @click="handleClick('https://github.com/itwxb')"> -->
       <!-- <v-icon>apps</v-icon> -->

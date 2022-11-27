@@ -10,7 +10,7 @@ export default new Router({
       name: 'home',
       component: () => import('./views/Home.vue'),
       meta: {
-        title: 'Aaron.blog'
+        title: '乔木博客'
       }
     },
     {
@@ -110,8 +110,22 @@ export default new Router({
         component: () => import('./views/Friend.vue'),
         meta: {
           title: '友情链接'
+        },
+        
+      }]
+    },
+    {
+      path: '/item50',
+      component: Layout,
+      children: [{
+        path: '',
+        name: 'item50-index',
+        component: () => import('./views/Item50.vue'),
+        meta: {
+          title: '50个项目'
         }
       }]
-    }
+      
+    },
   ]
 })

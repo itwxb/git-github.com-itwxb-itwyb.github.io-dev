@@ -47,7 +47,7 @@
               >
             </p>
             <p class="Grid-cell">
-              部署于 Gitee Pages，主要博客地址，因为Github访问太慢了
+              部署于 Gitee Pages 代码同Github博客
             </p>
           </div>
           <div class="Grid">
@@ -55,9 +55,9 @@
               <a href="https://github.com/itwxb" target="_blank">GitHub</a>
             </p>
             <p class="Grid-cell">
-              个人Github地址
+              个人Github主页地址
               <a href="https://github.com/itwxb" target="_blank"
-                >目前没啥好玩的，但我在学习中</a
+                >点我查看</a
               >
             </p>
           </div>

@@ -29,6 +29,10 @@ export const nav = [{
   {
     text: '友情链接',
     path: '/friend'
+  },
+  {
+    text: '50个项目',
+    path: '/item50'
   }
 ]
 
@@ -64,9 +68,9 @@ export const book = {
 
 export const friend = {
   items: [{
-      name: 'Dream-我的Gitee博客',
+      name: '我的Gitee博客',
       url: 'https://itwxb.gitee.io/',
-      avatar: 'https://itwxb.gitee.io/static/picture/userlogo.png'
+      avatar: 'https://s2.loli.net/2022/11/27/QhkmBtI7xK2LGNb.jpg'
     },
     {
       name: '牧码哟-博客原作者,感谢大佬开源!',
