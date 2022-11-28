@@ -42,13 +42,13 @@
           </div>
           <div class="Grid">
             <p class="Grid-cell u-1ofn">
-              <a href="https://itwxb.gitee.io/" target="_blank"
-                >My Blog-Gitee</a
+              <a
+                href="https://github.com/itwxb/itwyb.github.io-dev"
+                target="_blank"
+                >我的博客源码</a
               >
             </p>
-            <p class="Grid-cell">
-              部署于 Gitee Pages 代码同Github博客
-            </p>
+            <p class="Grid-cell">打包文件已部署于 Gitee Pages 与 Github Pages</p>
           </div>
           <div class="Grid">
             <p class="Grid-cell u-1ofn">
@@ -56,9 +56,7 @@
             </p>
             <p class="Grid-cell">
               个人Github主页地址
-              <a href="https://github.com/itwxb" target="_blank"
-                >点我查看</a
-              >
+              <a href="https://github.com/itwxb" target="_blank">我的开源项目分享</a>
             </p>
           </div>
           <h3 class="stress">专业技能</h3>
