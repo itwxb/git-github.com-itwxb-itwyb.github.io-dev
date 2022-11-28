@@ -184,4 +184,7 @@ export default {
   font-weight: normal;
   font-size: 15px;
 }
+.v-navigation-drawer--is-mobile{
+  z-index: 11;
+}
 </style>

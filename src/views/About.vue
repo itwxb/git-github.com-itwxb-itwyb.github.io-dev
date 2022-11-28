@@ -63,7 +63,7 @@
           </div>
           <h3 class="stress">专业技能</h3>
           <hr />
-          <p>• JS/Vue/Node.js/Git/HTML/CSS...</p>
+          <p>• JS/HTML/CSS/Vue/Node.js/Git/PS/Wx小程序...</p>
           <p></p>
           <p></p>
         </v-card>
