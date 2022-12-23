@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>随机数生成</title>
+  <link rel="stylesheet" href="https://cdn-mfstudio.oss-cn-beijing.aliyuncs.com/Layui/css/layui.css">
+  <link rel="stylesheet" href="index.css">
+
+  <!--注意修改相对位置-->
+  <script>
+    var _hmt = _hmt || [];
+    (function () {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?0a03240c5a751e727e90ba3ec86f5f0c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+</head>
+
+<body class="layui-layout-body">
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdn-mfstudio.oss-cn-beijing.aliyuncs.com/Layui/layui.js"></script>
+  <script src="https://cdn-mfstudio.oss-cn-beijing.aliyuncs.com/Clipboard/dist/clipboard.min.js"></script>
+
+  <div class="layui-body">
+    <div class="layui-layout layui-layout-admin">
+      <!-- <div class="layui-header" id="header"></div> -->
+    </div>
+
+    <!-- <div class="layui-card">
+      <div class="layui-card-body" id="banner"></div>
+    </div> -->
+
+    <!-- <div class="layui-inline" style="width:50%;">
+
+      <fieldset class="layui-elem-field" style="border-top-left-radius:5px;width:100%;height:465px;">
+        <legend>基础属性</legend>
+        <div class="layui-field-box">
+
+          <form class="layui-form">
+            <div class="layui-form-item">
+              <div class="layui-input-inline">
+                <input id="Item_list_name" placeholder="武器序号（英文）" class="layui-input">
+              </div>
+              <div class="layui-form-mid layui-word-aux">武器序号【例如：item1】</div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-input-inline">
+                <input id="Item_Name" placeholder="武器名称" class="layui-input">
+              </div>
+              <div class="layui-form-mid layui-word-aux">武器展示的名字 【例如：闪亮的勋章】</div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-input-inline">
+                <input id="Item_Type" placeholder="武器ID" class="layui-input">
+              </div>
+              <div class="layui-form-mid layui-word-aux">武器的材质 【例如：石头 ID：STONE】</div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-input-inline" style="width:47%;">
+                <select id="Item_Grade">
+                  <option value="">武器品质</option>
+                  <option value="§f§l普通">普通</option>
+                  <option value="§a§l优秀">优秀</option>
+                  <option value="§9§l精良">精良</option>
+                  <option value="§5§l史诗">史诗</option>
+                  <option value="§6§l传说">传说</option>
+                </select>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-input-inline">
+                <input id="Item_Data" placeholder="武器Data" class="layui-input">
+              </div>
+              <div class="layui-form-mid layui-word-aux">武器的别名ID 【例如：11】</div>
+            </div>
+            <div class="layui-form-item">
+              <input id="Item_Lore" placeholder="单行武器描述 (彩色符号：§）" class="layui-input">
+            </div>
+            <div class="layui-form-item">
+              <input id="Item_Sever_Name" placeholder="服务器名称 (彩色符号：§）" class="layui-input">
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-input-inline" style="width:47%;">
+                <button id="copy" data-clipboard-target="#copy" data-clipboard-action="copy" onClick="copyflag()"
+                  type="button" class="layui-btn layui-btn-primary" data-clipboard-text="§">复制 §</button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </fieldset>
+    </div> -->
+
+    <div class="layui-inline">
+      <fieldset class="layui-elem-field" style="border-top-right-radius:5px;width:100%;">
+        <legend>数据展示</legend>
+        <div class="layui-field-box">
+
+          <form class="layui-form">
+            <div class="layui-form-item">
+              <div class="layui-input-block">
+                <button class="layui-btn" type="button" onclick="itemcreate();">生成</button>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-input-inline" style="width:100%;">
+                <p id="shield-yml" style="height:100%;overflow-y: scroll;" class="layui-textarea"></p>
+              </div>
+            </div>
+            <div class="layui-form-item">
+              <div class="layui-input-block">
+                <button class="layui-btn" type="button" onclick="copy('Copyres');">复制</button>
+              </div>
+            </div>
+          </form>
+
+        </div>
+      </fieldset>
+    </div>
+    <!-- <fieldset class="layui-elem-field" style="border-top-left-radius:5px;width:100%;height:465px;">
+      <legend>武器属性</legend>
+      <div class="layui-field-box">
+
+        <form class="layui-form">
+          <div class="layui-form-item">
+            <div class="layui-input-inline">
+              <input id="Item_Damage_Min" placeholder="最小伤害" class="layui-input">
+            </div>
+            <div class="layui-input-inline">
+              <input id="Item_Damage_Max" placeholder="最大伤害" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-input-inline">
+              <input id="Item_Crit_Rate" placeholder="暴击率（单位：%）" class="layui-input">
+            </div>
+            <div class="layui-input-inline">
+              <input id="Item_Crit_Damage" placeholder="暴击伤害（单位：%）" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-input-inline">
+              <input id="Item_Hit_Rate" placeholder="命中率（单位：%）" class="layui-input">
+            </div>
+            <div class="layui-input-inline">
+              <input id="Item_Durability" placeholder="耐久值" class="layui-input">
+            </div>
+            <div class="layui-input-inline">
+              <label class="layui-form-label">无限耐久</label>
+              <input type="checkbox" id="Item_Durability_Enable" lay-skin="switch" />
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-input-inline" style="width:10%;">
+              <select id="Item_Skill">
+                <option value="">武器技能</option>
+                <option value="Air_Shock">风刃</option>
+                <option value="Bad_Luck">霉运</option>
+                <option value="Blind">失明</option>
+                <option value="Bubble_Deflector">泡泡</option>
+                <option value="Cannibalism">噬尸</option>
+                <option value="Confuse">眩晕</option>
+                <option value="Curse">诅咒</option>
+                <option value="Dark_Flame">黑暗之火</option>
+                <option value="Dark_Impact">黑暗干涉</option>
+                <option value="Flame">点燃</option>
+                <option value="Flame_Wheel">火焰之轮</option>
+                <option value="Freeze">冰冻</option>
+                <option value="Harm">伤害</option>
+                <option value="Hungry">饥饿</option>
+                <option value="Levitation">漂浮</option>
+                <option value="Lightning">雷击</option>
+                <option value="Poison">剧毒</option>
+                <option value="Roots">埋葬</option>
+                <option value="Slowness">缓慢</option>
+                <option value="Fatigue">疲倦</option>
+                <option value="Vampirism">吸血</option>
+                <option value="Venom_Blast">毒液爆发</option>
+                <option value="Venom_Spread">感染</option>
+                <option value="Weakness">虚弱</option>
+                <option value="Wither">凋零</option>
+              </select>
+            </div>
+            <div class="layui-input-inline">
+              <input id="Item_Skill_Grade" placeholder="技能等级（推荐：1-5）" class="layui-input">
+            </div>
+            <div class="layui-input-inline">
+              <input id="Item_Skill_Rate" placeholder="触发概率（单位：%）" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-input-inline" style="width:10%;">
+              <select id="Item_Element">
+                <option value="">武器元素</option>
+                <option value="Water">水</option>
+                <option value="Fire">火</option>
+                <option value="Nature">土</option>
+                <option value="Wind">风</option>
+              </select>
+            </div>
+            <div class="layui-input-inline">
+              <input id="Item_Element_Grade" placeholder="元素值" class="layui-input">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <div class="layui-input-inline" style="width:10%;">
+              <select id="Item_Bind">
+                <option value="true">绑定</option>
+                <option value="false">不绑定</option>
+              </select>
+            </div>
+            <div class="layui-input-inline">
+              <input id="Item_Slot" placeholder="镶嵌孔数（推荐：0-5）" class="layui-input">
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </fieldset> -->
+    <div id="footer"></div>
+    <!-- <script src="https://mcbjq.com/js/editor_footer.js"></script> -->
+  </div>
+
+  <!--注意修改相对位置-->
+  <script>
+    layui.use(['element', 'form', 'layer'], function () {
+      var element = layui.element,
+        form = layui.form,
+        layer = layui.layer;
+    });
+  </script>
+  <script>
+    function copyflag() {
+      layui.use('layer', function () {
+        var layer = layui.layer;
+        var clipboard = new ClipboardJS('#copy', {
+          text: function () {
+            return '§';
+          }
+        });
+        clipboard.on("success", function (e) {
+          console.log("ok");
+          layer.msg("复制成功", {
+            icon: 1,
+            time: 1000
+          });
+          clipboard.destroy();
+        });
+        clipboard.on("error", function (e) {
+          console.log("fail");
+        });
+        document.getElementById('copy').click(); //解决clipboard二次点击生效问题
+        clipboard.destroy();
+
+      });
+    }
+
+    // 获取日期
+    function getDate() {
+
+      var date = new Date();
+
+      date.getYear(); //获取当前年份(2位)
+
+      date.getFullYear(); //获取完整的年份(4位)
+
+      date.getMonth(); //获取当前月份(0-11,0代表1月)
+
+      date.getDate(); //获取当前日(1-31)
+
+      date.getDay(); //获取当前星期X(0-6,0代表星期天)
+
+      date.getTime(); //获取当前时间(从1970.1.1开始的毫秒数)
+
+      date.getHours(); //获取当前小时数(0-23)
+
+      date.getMinutes(); //获取当前分钟数(0-59)
+
+      date.getSeconds(); //获取当前秒数(0-59)
+
+      date.getMilliseconds(); //获取当前毫秒数(0-999)
+
+      date.toLocaleDateString(); //获取当前日期
+
+      var mytime = date.toLocaleTimeString(); //获取当前时间
+
+      date.toLocaleString(); //获取日期与时间
+
+
+
+      // 获取当前月份
+      var nowMonth = date.getMonth() + 1;
+
+      // 获取当前是几号
+      var strDate = date.getDate();
+
+      // 添加分隔符“-”
+      var seperator = "-";
+
+      // 对月份进行处理，1-9月在前面添加一个“0”
+      if (nowMonth >= 1 && nowMonth <= 9) {
+        nowMonth = "0" + nowMonth;
+      }
+
+      // 对月份进行处理，1-9号在前面添加一个“0”
+      if (strDate >= 0 && strDate <= 9) {
+        strDate = "0" + strDate;
+      }
+
+      // 最后拼接字符串，得到一个格式为(yyyy-MM-dd)的日期
+      var nowDate = nowMonth + seperator + strDate;
+
+      // 进行外部函数调用
+      var nowDateFunc = function () {
+        return nowDate
+      }
+
+      return nowDateFunc
+
+      // 获取的是前一天日期
+      var time = (new Date).getTime() - 24 * 60 * 60 * 1000;
+      var yesday = new Date(time); // 获取的是前一天日期
+    }
+
+    var resNowDate = getDate()
+    var resNowDates = resNowDate()
+
+    // 获取随机数
+    function getRandom(min, max) {
+      return Math.floor(Math.random() * (max - min)) + min
+    }
+  </script>
+
+  <script>
+    function itemcreate() {
+
+
+      var ele =
+        '<p id="Copyres">' + "K02-2F" + '<br/>' +
+        resNowDates + '白班<br/>' +
+        'SWDL工站 ' + '<br/>' +
+        'A1 投料' + getRandom(2200, 2770) + 'pcs <br/>' +
+        'A2 投料' + getRandom(2200, 2770) + 'pcs <br/>' +
+        'B1 投料' + getRandom(2200, 2770) + 'pcs <br/>' +
+        'B2 投料' + getRandom(2200, 2770) + 'pcs <br/>' +
+        'QT0工站' + '<br/>' +
+        'A1 投料' + getRandom(2200, 2770) + 'pcs <br/>' +
+        'A2 投料' + getRandom(2200, 2770) + 'pcs <br/>' +
+        'B1 投料' + getRandom(2200, 2770) + 'pcs <br/>' +
+        'B2 投料' + getRandom(2200, 2770) + 'pcs <br/>' +
+        'QT1工站' + '<br/>' +
+        'A1 投料' + getRandom(2200, 2770) + 'pcs <br/>' +
+        'A2 投料' + getRandom(2200, 2770) + 'pcs <br/>' +
+        'B1 投料' + getRandom(2200, 3100) + 'pcs <br/>' +
+        'B2 投料' + getRandom(2200, 3100) + 'pcs <br/>' +
+        'PROX工站' + '<br/>' +
+        'A1 投料' + getRandom(2200, 2770) + 'pcs <br/>' +
+        'A2 投料' + getRandom(2200, 2770) + 'pcs <br/>' +
+        'B1 投料' + getRandom(2200, 2900) + 'pcs <br/>' +
+        'B2 投料' + getRandom(2200, 2800) + 'pcs <br/>' +
+        'Lronman工站' + '<br/>' +
+        'A1 投料' + getRandom(2200, 2770) + 'pcs <br/>' +
+        'A2 投料' + getRandom(2200, 2770) + 'pcs <br/>' +
+        'B1 投料' + getRandom(2200, 2900) + 'pcs <br/>' +
+        'B2 投料' + getRandom(2200, 2800) + 'pcs <br/>' +
+        'CSC工站' + '<br/>' +
+        'A1 投料' + getRandom(4000, 4270) + 'pcs <br/>' +
+        'B1 投料' + getRandom(2700, 2800) + 'pcs <br/>' +
+        'B2 投料' + getRandom(2200, 2800) + 'pcs <br/>' +
+        'P6工站' + '<br/>' +
+        'A1 投料' + getRandom(3200, 3470) + 'pcs <br/>' +
+        'B1 投料' + getRandom(3500, 3800) + 'pcs <br/>' +
+        'B2 投料' + getRandom(3200, 3400) + 'pcs <br/>' +
+        'P7工站' + '<br/>' +
+        'A1 投料' + getRandom(3200, 3470) + 'pcs <br/>' +
+        'A2 投料' + getRandom(3500, 3800) + 'pcs <br/>' +
+        'B1 投料' + getRandom(3200, 3400) + 'pcs <br/>' +
+        'SS工站' + '<br/>' +
+        '8线B1 投料' + getRandom(2500, 2770) + 'pcs <br/>' +
+        '8线B2 投料' + getRandom(2800, 2990) + 'pcs <br/>' +
+        '9线A1 投料' + getRandom(2200, 2400) + 'pcs <br/>' +
+        '9线B1 投料' + getRandom(2200, 2400) + 'pcs <br/>'
+
+
+      // '<br/>'
+      // if (document.getElementById("Item_Durability_Enable").checked)
+      //   ele += '&nbsp;&nbsp;&nbsp;&nbsp;- §7 无限耐久<br/>'
+      // else
+      //   ele += '&nbsp;&nbsp;&nbsp;&nbsp;- \'@MyItems, LoreStats = DURABILITY, Value = ' + document.getElementById(
+      //     "Item_Durability").value + '\'<br/>'
+      // if (document.getElementById("Item_Element").value) {
+      //   ele +=
+      //     '&nbsp;&nbsp;&nbsp;&nbsp;- \'@MyItems, Element = ' + document.getElementById("Item_Element").value +
+      //     ', Value = ' + document.getElementById("Item_Element_Grade").value + '\'<br/>'
+      // }
+      // ele +=
+      //   '&nbsp;&nbsp;&nbsp;&nbsp;- \'§e§l§m---==§6§l§m:::[§r §3§l武器描述§r §6§l§m]:::§e§l§m==---\'<br/>' +
+      //   '&nbsp;&nbsp;&nbsp;&nbsp;- \'§7武器描述§f§l：§5' + document.getElementById("Item_Lore").value + '\'<br/>' +
+      //   '&nbsp;&nbsp;&nbsp;&nbsp;- \'§7武器品质§f§l：' + document.getElementById("Item_Grade").value + '\'<br/>'
+      // if (document.getElementById("Item_Skill").value) {
+      //   ele +=
+      //     '&nbsp;&nbsp;&nbsp;&nbsp;- \'§e§l§m---==§6§l§m:::[§r §3§l武器技能§r §6§l§m]:::§e§l§m==---\'<br/>' +
+      //     '&nbsp;&nbsp;&nbsp;&nbsp;- \'@MyItems, Ability = ' + document.getElementById("Item_Skill").value +
+      //     ', Grade = ' + document.getElementById("Item_Skill_Grade").value + ', Chance = ' + document.getElementById(
+      //       "Item_Skill_Rate").value + '\'<br/>'
+      // }
+      // if (document.getElementById("Item_Slot").value) {
+      //   ele += '&nbsp;&nbsp;&nbsp;&nbsp;- \'§e§l§m---==§6§l§m:::[§r §3§l宝石镶嵌§r §6§l§m]:::§e§l§m==---\'<br/>'
+      //   var i = 0;
+      //   for (i = 0; i < document.getElementById("Item_Slot").value; i++) {
+      //     ele += '&nbsp;&nbsp;&nbsp;&nbsp;- \'@MyItems, SlotSocket = Empty\'<br/>'
+      //   }
+      // }
+      // ele +=
+      //   '&nbsp;&nbsp;&nbsp;&nbsp;- \'§e§l§m---==§6§l§m:::[§r §9§l' + document.getElementById("Item_Sever_Name").value +
+      //   '§r §6§l§m]:::§e§l§m==---\'<br/>' +
+      //   '&nbsp;&nbsp;&nbsp;&nbsp;Unbreakable: true<br/>'
+      // ele += '</p>';
+      document.getElementById("shield-yml").innerHTML = ele;
+    }
+  </script>
+  <script>
+    var menu = [{
+        name: '物品',
+        href: './item.html',
+        choose: false,
+        dot: false
+      },
+      {
+        name: '武器',
+        href: './weapon.html',
+        choose: true,
+        dot: false
+      },
+      {
+        name: '防具',
+        href: './armor.html',
+        choose: false,
+        dot: false
+      },
+      {
+        name: '套装',
+        href: './sets.html',
+        choose: false,
+        dot: false
+      },
+      {
+        name: '宝石',
+        href: './core.html',
+        choose: false,
+        dot: false
+      },
+      {
+        name: '元素',
+        href: './element.html',
+        choose: false,
+        dot: false
+      },
+      {
+        name: '指令',
+        href: './command.html',
+        choose: false,
+        dot: false
+      }
+    ]
+
+    // 复制功能
+    function copy(id) {
+
+      let tx = document.getElementById('Copyres');
+      if (tx == null) {
+        layer.msg("无内容", {
+          icon: 2,
+          time: 1000
+        });
+      } else {
+        // 创建select对象与range对象
+        const selection = window.getSelection()
+        const range = document.createRange()
+        // 从当前selection对象中移除所有的range对象, 
+        // 取消所有的选择只 留下anchorNode 和focusNode属性并将其设置为null。
+        // 这里没弄明白为什么需要先remove一下， 也没有太多资料查证 没有这句会复制失败
+        if (selection.rangeCount > 0) selection.removeAllRanges()
+        // 使 Range 包含某个节点的内容 使用这个 或者下面的selectNode都可以
+        // range.selectNodeContents(tx)
+
+
+        // 使 Range 包含某个节点及其内容
+        range.selectNode(tx)
+        // 向选区（Selection）中添加一个区域（Range）
+        selection.addRange(range)
+        // 已复制文字
+        // console.log('selectedText', selection.toString())
+        // 执行浏览器复制命令
+        document.execCommand('copy')
+        layer.msg("复制成功", {
+          icon: 1,
+          time: 1000
+        });
+
+      }
+
+
+    }
+  </script>
+  <!-- <script src="./js/editor_header.js"></script> -->
+
+</body>
+
+</html>

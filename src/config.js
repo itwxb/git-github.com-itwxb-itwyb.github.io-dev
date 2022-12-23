@@ -11,8 +11,8 @@ export const nav = [{
     path: '/study'
   },
   {
-    text: '算法练习',
-    path: '/algorithm'
+    text: '我的项目',
+    path: '/myitem'
   },
   {
     text: '收藏列表',

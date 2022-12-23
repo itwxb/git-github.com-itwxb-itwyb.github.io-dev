@@ -4,8 +4,7 @@ import Layout from '@/views/Layout'
 Vue.use(Router)
 
 export default new Router({
-  routes: [
-    {
+  routes: [{
       path: '/',
       name: 'home',
       component: () => import('./views/Home.vue'),
@@ -35,7 +34,7 @@ export default new Router({
         meta: {
           title: '文章列表'
         }
-      },{
+      }, {
         path: '/article/:id',
         name: 'article-content',
         component: () => import('./views/Content.vue')
@@ -51,7 +50,7 @@ export default new Router({
         meta: {
           title: '学习笔记'
         }
-      },{
+      }, {
         path: '/study/:id',
         name: 'study-content',
         component: () => import('./views/Content.vue')
@@ -67,7 +66,7 @@ export default new Router({
         meta: {
           title: '算法练习'
         }
-      },{
+      }, {
         path: '/algorithm/:id',
         name: 'algorithm-detail',
         component: () => import('./views/Content.vue')
@@ -95,7 +94,7 @@ export default new Router({
         meta: {
           title: '收藏列表'
         }
-      },{
+      }, {
         path: '/note/:id',
         name: 'note-content',
         component: () => import('./views/Content.vue')
@@ -111,7 +110,7 @@ export default new Router({
         meta: {
           title: '友情链接'
         },
-        
+
       }]
     },
     {
@@ -125,7 +124,20 @@ export default new Router({
           title: '50个项目'
         }
       }]
-      
+
+    },
+    {
+      path: '/myitem',
+      component: Layout,
+      children: [{
+        path: '',
+        name: 'myitem-index',
+        component: () => import('./views/Myitem.vue'),
+        meta: {
+          title: '我的项目'
+        }
+      }]
+
     },
   ]
 })

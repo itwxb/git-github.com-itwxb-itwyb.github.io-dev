@@ -1,0 +1,33 @@
+.layui-inline {
+    width: 90%;
+
+}
+
+.layui-body {
+    margin-top: 100px;
+}
+
+.layui-form-item .layui-input-inline {
+    height: 300px;
+}
+
+@media screen and (max-width:1000px) {
+
+
+
+    .layui-form-item .layui-input-inline {
+        height: 1600px;
+    }
+
+    .layui-textarea {
+        font-size: 60px;
+        line-height: 60px;
+    }
+
+    .layui-btn {
+        width: 80%;
+        font-size: 40px;
+        height: 90px;
+    }
+
+}

@@ -221,6 +221,10 @@ export default {
           img: "Verify Account Ui",
           title: "验证码输入",
         },
+        {
+          img: "Live User Filter",
+          title: "在线搜索用户",
+        },
       ],
     };
   },
